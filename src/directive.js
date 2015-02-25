@@ -367,10 +367,16 @@
                         element.on('click', function(e) {
                             e.preventDefault();
 
-                            $validationProvider.validate(form)
-                                .success(function() {
+                            $validationProvider.validate(form).then(
+                                function() {
                                     $parse(attrs.ngClick)(scope);
-                                });
+                                },
+                                function() {
+                                    if (attrs.whenInvalid) {
+                                        $parse(attrs.whenInvalid)(scope);
+                                    }
+                                }
+                            );
                         });
                     });
 
