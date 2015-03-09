@@ -33,7 +33,7 @@
                     }
                     ctrl.$setValidity(ctrl.$name, true);
                     if (scope.validCallback) scope.validCallback();
-                    if ($validationProvider.validCallback) $validationProvider.validCallback(element);
+                    if ($validationProvider.validCallback) $validationProvider.validCallback(element, messageToShow);
 
                     return true;
                 };
@@ -42,15 +42,15 @@
                 /**
                  * Do this function if validation invalid
                  * @param element
-                 * @param validMessage
+                 * @param invalidMessage
                  * @param validation
                  * @param callback
                  * @param ctrl
                  * @returns {}
                  */
-                var invalidFunc = function(element, validMessage, validation, scope, ctrl) {
+                var invalidFunc = function(element, invalidMessage, validation, scope, ctrl) {
                     var messageElem,
-                        messageToShow = validMessage || $validationProvider.getDefaultMsg(validation).error;
+                        messageToShow = invalidMessage || $validationProvider.getDefaultMsg(validation).error;
 
                     if (scope.messageId)
                         messageElem = angular.element(document.querySelector('#' + scope.messageId));
@@ -65,7 +65,7 @@
                     }
                     ctrl.$setValidity(ctrl.$name, false);
                     if (scope.inValidCallback) scope.inValidCallback();
-                    if ($validationProvider.invalidCallback) $validationProvider.invalidCallback(element);
+                    if ($validationProvider.invalidCallback) $validationProvider.invalidCallback(element, messageToShow);
 
                     return false;
                 };
