@@ -1,4 +1,4 @@
-angular-validation 1.3.x - prepare for it
+angular-validation 1.3.0
 =========================
 [![NPM version](https://badge.fury.io/js/angular-validation.svg)](http://badge.fury.io/js/angular-validation)
 [![Build Status](https://travis-ci.org/huei90/angular-validation.png?branch=master)](https://travis-ci.org/huei90/angular-validation)
@@ -7,7 +7,10 @@ angular-validation 1.3.x - prepare for it
 
 Client-side Validation should be simple and clean.
 <br/>Don't let Client-side Validation dirty your controller.
-<br/>Setup your Validation on config phase by using some rules [(example)](https://github.com/huei90/angular-validation/blob/master/dist/angular-validation-rule.js)
+
+Setup your Validation on config phase by using some rules [(example)](https://github.com/huei90/angular-validation/blob/master/dist/angular-validation-rule.js)
+<br/>If you prefer schema over html attributes , try [angular-validation-schema
+](https://github.com/thetutlage/angular-validation-schema) [(Demo)](http://plnkr.co/edit/X56HEsDYgYoY8gbSj7cu?p=preview)
 <br/>And add Validation in your view only.
     
 angularjs 1.2.x support to version [angular-validation 1.2.x](https://github.com/huei90/angular-validation/tree/v1.2.x) <br/>
@@ -16,7 +19,7 @@ angularjs 1.3.x support after version angular-validation 1.3.x
 Requirement
 -----
 [AngularJS](http://angularjs.org) 1.2.x (for [angular-validation 1.2.x](https://github.com/huei90/angular-validation/tree/v1.2.x)) <br/>
-[AngularJS](http://angularjs.org) 1.3.x (for angular-validation 1.3.x)
+[AngularJS](http://angularjs.org) 1.3.x (for [angular-validation 1.3.x](https://github.com/huei90/angular-validation/tree/master))
 
 DEMO
 -----
@@ -122,6 +125,18 @@ $validationProvider.setErrorHTML(function (msg) {
 
 You can add the bootstrap class `.has-success` in a similar fashion.
 
+To toggle `.has-error` class on bootstrap `.form-group` wrapper for labels and controls, add:
+
+```javascript
+angular.extend($validationProvider, {
+    validCallback: function (element){
+        $(element).parents('.form-group:first').removeClass('has-error');
+    },
+    invalidCallback: function (element) {
+        $(element).parents('.form-group:first').addClass('has-error');
+    }
+});
+```
 
 CHANGELOG
 =====
